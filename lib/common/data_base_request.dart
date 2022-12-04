@@ -14,6 +14,11 @@ abstract class DataBaseRequest{
   static const String tableOrderStatus = 'status';
   static const String tableOrder = 'order';
 
+  static String select(String table) => 'Select * from $table';
+
+  static String selectName(String table, List<String> test) =>
+      'Select ${test.toString().replaceAll('[', '').replaceAll(']', '')} from $table';
+
   static const List<String> tableList = [
     tableRole,
     tableUser,

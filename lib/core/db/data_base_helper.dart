@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:pract2/common/data_base_request.dart';
+import 'package:pract2/core/crypto/crypto.dart';
 import 'package:pract2/data/model/role.dart';
 import 'package:pract2/data/model/user.dart';
 import 'package:pract2/domain/entity/role_entity.dart';
@@ -81,7 +82,7 @@ class DataBaseHelper {
 
       db.insert(
           DataBaseRequest.tableUser,
-          User(login: 'admin', idRole: RoleEnum.admin, password: 'admin123')
+          User(login: 'admin12', idRole: RoleEnum.admin, password: Crypto.crypto('admin123'))
               .toMap());
     } on DatabaseException catch (error) {
       print(error.result);

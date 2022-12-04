@@ -1,31 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:pract2/common/url_page.dart';
 import 'package:pract2/core/db/data_base_helper.dart';
+import 'package:pract2/presentation/admin/admin_home.dart';
+import 'package:pract2/presentation/auth/sign_in.dart';
+import 'package:pract2/presentation/auth/sign_up.dart';
+import 'package:pract2/presentation/user/user_home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  DataBaseHelper().init();
-  runApp(const MyApp());
+  DataBaseHelper.instance.init();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage(),
+    return MaterialApp(
+      initialRoute: UrlPage.singIn,
+      routes: {
+        UrlPage.admin: (context) =>AdminHome(),
+        UrlPage.user: (context) => UserHome(),
+        UrlPage.singIn: (context) => SignIn(),
+        UrlPage.signUp: (context) => SignUp()
+      },
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(
-      child: Text('Круто!'),
-    ));
   }
 }
